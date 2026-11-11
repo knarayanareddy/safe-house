@@ -26,6 +26,16 @@ const MOCKS = [
   ["Survey respondents & the swarm", "262 synthetic Groningen personas answer the survey and drive the swarm. Labelled SIMULATED everywhere. Not user research."],
 ];
 
+function SafeHouseMark({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true" style={{ display: "block", flex: "none" }}>
+      <rect width="64" height="64" rx="15" fill="#113D30" />
+      <path d="M32 10 L53 26.5 V50 C53 51.7 51.7 53 50 53 H14 C12.3 53 11 51.7 11 50 V26.5 Z" fill="#CEFA00" />
+      <path d="M21 25 H28.5 V34.5 H35.5 V25 H43 V47 H35.5 V39.5 H28.5 V47 H21 Z" fill="#FF5A00" />
+    </svg>
+  );
+}
+
 export default function Shell({ children }: { children: ReactNode }) {
   const path = usePathname();
   const [dark, setDark] = useState(false);
@@ -37,12 +47,16 @@ export default function Shell({ children }: { children: ReactNode }) {
     <>
       <div className="topbar">
         <div className="wrap">
-          <Link href="/" className="brand" aria-label="Verified home"><span className="brand-mark"><Icon name="shield" size={17} /></span>Verified</Link>
+          <Link href="/" className="brand" aria-label="safe-house home">
+            <SafeHouseMark size={32} />
+            <span className="brand-word">safe<span className="brand-h">H</span>ouse</span>
+          </Link>
           <span className="city-pill"><Icon name="pin" size={14} />Groningen</span>
+          <span className="tagline-pill">REAL ROOMS. REAL PEOPLE.</span>
           <span className="spacer" />
           <Link href="/gate" className="btn sm" style={{ display: "inline-flex" }}>List a room</Link>
           <button className="btn sm" onClick={toggle} aria-pressed={dark} aria-label="Toggle dark theme">{dark ? "Light" : "Dark"}</button>
-          <button className="city-pill" onClick={() => setOpen(true)} style={{ cursor: "pointer", borderColor: "var(--copper)", color: "var(--copper)", fontWeight: 600 }} aria-haspopup="dialog">
+          <button className="city-pill" onClick={() => setOpen(true)} style={{ cursor: "pointer", borderColor: "var(--copper)", color: "var(--copper)", fontWeight: 700 }} aria-haspopup="dialog">
             <span className="dot" style={{ background: "var(--copper)" }} />Demo mode
           </button>
         </div>
@@ -58,7 +72,7 @@ export default function Shell({ children }: { children: ReactNode }) {
       <main className="wrap" style={{ paddingBottom: 24 }}>{children}</main>
       <footer className="footer">
         <div className="wrap">
-          <p>Working demo for a hackathon. Checks are simulated where marked. Detector figures are used as a simulation input, attributed. Not legal advice.</p>
+          <p><strong style={{ color: "var(--ink)" }}>safe-house</strong> · REAL ROOMS. REAL PEOPLE. — Working demo for a hackathon. Checks are simulated where marked. Detector figures are used as a simulation input, attributed. Not legal advice.</p>
           <p style={{ marginTop: 6 }}>Demo environment. Identity, ownership, address and register checks are simulated; the issuer is shown on every result. Survey respondents are synthetic personas — SIMULATED, rehearsal for design, not user research.</p>
         </div>
       </footer>

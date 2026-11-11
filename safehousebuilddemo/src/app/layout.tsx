@@ -4,8 +4,8 @@ import "./globals.css";
 import Shell from "@/components/Shell";
 
 export const metadata: Metadata = {
-  title: "Verified — verified student housing in Groningen",
-  description: "A verification and allocation layer for Groningen student housing: verified listings, a published queue, fair housemate choice, sublet with consent, and a public audit log.",
+  title: "safe-house — REAL ROOMS. REAL PEOPLE.",
+  description: "Student housing in the Netherlands, made safe, simple and social: verified listings, a published queue, fair housemate choice, sublet with consent, and a public audit log.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

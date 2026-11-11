@@ -14,7 +14,7 @@ export default async function SurveyReview() {
       <PageHeader
         eyebrow="Survey Lab · does it capture the build?"
         title={<>The current survey measures a product <em className="accent">we are not building</em></>}
-        lede="We read the Google Form against the Verified master spec, question by question. Short answer: no — it is a decent mood check, but it can’t confirm or kill a single core design decision. Below: what’s missing, the redesigned v2, and 262 persona agents’ answers to both."
+        lede="We read the Google Form against the safe-house master spec, question by question. Short answer: no — it is a decent mood check, but it can’t confirm or kill a single core design decision. Below: what’s missing, the redesigned v2, and 262 persona agents’ answers to both."
         meta={<><SimBadge /><span>v1 coverage <b>{s1} / {COVERAGE.length}</b></span><span>v2 coverage <b>{s2} / {COVERAGE.length}</b></span><span>stored responses <b>{counts.reduce((s, c) => s + c.n, 0)}</b></span></>}
       />
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>

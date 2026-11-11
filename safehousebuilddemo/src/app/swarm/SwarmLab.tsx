@@ -14,7 +14,7 @@ interface Pulse { a: number; b: number; t: number; speed: number; color: string;
 const PAIN: Record<string, string> = { scams: "Scams", ghosting: "Ghosting", competition: "Too many applicants", discrimination: "“No internationals”", unclear: "Unclear selection", rentabove: "Rent above legal max", hospiteer: "Hospiteer auditions", fees: "Platform fees", shortstay: "Short-stay contracts", info: "No landlord info" };
 const BARRIER: Record<string, string> = { supply: "Not enough rooms on it", landlord_adoption: "Landlords I want aren't on it", privacy: "Privacy / data security", verification: "Doubt the verification", existing: "Prefer current platforms", none: "Nothing" };
 const SWITCH: Record<string, string> = { partner: "if RUG, Hanze or the municipality endorse it", landlords_here: "if I see good rooms I can't find elsewhere", friends: "if my friends or housemates use it", free_forever: "a written promise it stays free for students", verified_proof: "being able to see exactly what was checked", cheaper: "lower prices than the alternatives" };
-const POS = "#5fd4a6", NEG = "#e0607a", NEU = "#6b7787", GOLD = "#d6ae4a";
+const POS = "#cefa00", NEG = "#ff5a00", NEU = "#708a7e", GOLD = "#cefa00";
 
 function mix(a: string, b: string, t: number) {
   const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16)), pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
@@ -114,7 +114,7 @@ export default function SwarmLab({ personas, counts }: { personas: SwarmPersona[
 
       // draw
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#0d1117"; ctx.fillRect(0, 0, s.w, s.h);
+      ctx.fillStyle = "#0b241c"; ctx.fillRect(0, 0, s.w, s.h);
       ctx.strokeStyle = "rgba(255,255,255,0.025)"; ctx.lineWidth = 1;
       for (let gx = 0; gx < s.w; gx += 48) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, s.h); ctx.stroke(); }
       for (let gy = 0; gy < s.h; gy += 48) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(s.w, gy); ctx.stroke(); }
@@ -143,7 +143,7 @@ export default function SwarmLab({ personas, counts }: { personas: SwarmPersona[
         const nd = g.nodes[i];
         if (nd.kind === "hub") {
           const st = s.stance[i] ?? 0;
-          ctx.strokeStyle = GOLD; ctx.lineWidth = 1.4; ctx.fillStyle = "#0d1117"; ctx.beginPath(); ctx.arc(s.x[i], s.y[i], 8, 0, 7); ctx.fill(); ctx.stroke();
+          ctx.strokeStyle = GOLD; ctx.lineWidth = 1.4; ctx.fillStyle = "#0b241c"; ctx.beginPath(); ctx.arc(s.x[i], s.y[i], 8, 0, 7); ctx.fill(); ctx.stroke();
           ctx.fillStyle = st > 0.05 ? POS : st < -0.05 ? NEG : GOLD; ctx.beginPath(); ctx.arc(s.x[i], s.y[i], 3.2, 0, 7); ctx.fill();
           ctx.fillStyle = "#c8d0da"; ctx.font = "10.5px -apple-system, Segoe UI, sans-serif"; ctx.textAlign = "center"; ctx.fillText(nd.label, s.x[i], s.y[i] - 13);
           continue;

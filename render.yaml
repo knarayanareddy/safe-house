@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: safe-house-demo
+    runtime: node
+    rootDir: safehousebuilddemo
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: safe-house-db
+          property: connectionString
+
+databases:
+  - name: safe-house-db
+    databaseName: safehouse_db
+    user: safehouse
+    plan: free

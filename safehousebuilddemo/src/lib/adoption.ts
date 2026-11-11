@@ -18,7 +18,7 @@ const BASE: SimEvent[] = [
 ];
 export const SCENARIOS: Scenario[] = [
   { key: "baseline", label: "Baseline launch", blurb: "Organic launch in Facebook groups, GSb newsletter and word of mouth. No institutional endorsement.", events: BASE },
-  { key: "rug_endorse", label: "RUG International Office endorses", blurb: "The international office adds Verified to the pre-arrival welcome pack.", events: [...BASE, { round: 3, target: "rug_intl", push: 0.26, platform: "forum", text: "RUG International Office adds Verified to the welcome pack: “Check what was verified before you pay anyone.”", hub: "RUG International Office" }, { round: 3, target: "short_stay", push: 0.2, platform: "chat", text: "Exchange coordinators forward the guide to incoming students." }, { round: 5, target: "landlords", push: 0.12, platform: "chat", text: "Landlords who rent to internationals hear that RUG recommends verified listings." }] },
+  { key: "rug_endorse", label: "RUG International Office endorses", blurb: "The international office adds safe-house to the pre-arrival welcome pack.", events: [...BASE, { round: 3, target: "rug_intl", push: 0.26, platform: "forum", text: "RUG International Office adds safe-house to the welcome pack: “Check what was verified before you pay anyone.”", hub: "RUG International Office" }, { round: 3, target: "short_stay", push: 0.2, platform: "chat", text: "Exchange coordinators forward the guide to incoming students." }, { round: 5, target: "landlords", push: 0.12, platform: "chat", text: "Landlords who rent to internationals hear that RUG recommends safe-house." }] },
   { key: "scam_wave", label: "Viral scam story", blurb: "A fake-listing wave hits Facebook; fear makes verification suddenly relevant.", events: [...BASE, { round: 3, target: "rug_intl", push: 0.22, platform: "forum", text: "Viral post: “30 students lost deposits this week to the same fake landlord.”" }, { round: 3, target: "hanze", push: 0.16, platform: "forum", text: "Hanze students share screenshots of the fake listing." }, { round: 5, target: "students", push: 0.12, platform: "chat", text: "Local news: housing scam reports up eightfold. Everyone is asking how to check a landlord." }] },
   { key: "cold_start", label: "Landlords stay away", blurb: "Students arrive but supply doesn't: the chicken-and-egg problem.", events: [{ round: 1, target: "landlords", push: -0.4, platform: "forum", text: "Landlord WhatsApp groups dismiss the platform: “We get 200 replies anyway.”" }, ...BASE.filter((e) => e.target !== "landlords")] },
   { key: "rival_price", label: "Incumbent fights back", blurb: "Kamernet drops its fee for a month and HousingAnywhere ships a badge.", events: [...BASE, { round: 3, target: "students", push: -0.11, platform: "forum", text: "Kamernet announces a one-month fee freeze. “Why switch now?”", hub: "Kamernet" }, { round: 6, target: "rug_intl", push: -0.08, platform: "chat", text: "HousingAnywhere launches its own “verified” label." }] },
@@ -29,7 +29,7 @@ export interface Graph { nodes: GNode[]; neighbors: number[][]; weights: number[
 
 export const HUBS = [
   { label: "RUG International Office", stance: 0 }, { label: "Hanze Housing Desk", stance: 0 }, { label: "GSb Student Union", stance: 0.1 },
-  { label: "Kamernet", stance: -0.15 }, { label: "Facebook: Rooms in Groningen", stance: 0 }, { label: "Gemeente Groningen", stance: 0 }, { label: "Verified", stance: 0.35 },
+  { label: "Kamernet", stance: -0.15 }, { label: "Facebook: Rooms in Groningen", stance: 0 }, { label: "Gemeente Groningen", stance: 0 }, { label: "safe-house", stance: 0.35 },
 ];
 
 export function buildGraph(personas: Persona[], intents: Record<string, number>, seed = 77): Graph {
@@ -60,7 +60,7 @@ export function buildGraph(personas: Persona[], intents: Record<string, number>,
       add(i, hubIds["Gemeente Groningen"]);
     }
   });
-  HUBS.forEach((h, k) => { if (h.label === "Verified") personas.forEach((_, i) => { if (i % 9 === k) add(i, hubIds["Verified"]); }); });
+  HUBS.forEach((h, k) => { if (h.label === "safe-house") personas.forEach((_, i) => { if (i % 9 === k) add(i, hubIds["safe-house"]); }); });
   const neighbors: number[][] = nodes.map(() => []);
   const weights: number[][] = nodes.map(() => []);
   edges.forEach(([a, b]) => {

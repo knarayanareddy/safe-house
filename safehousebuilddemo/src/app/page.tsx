@@ -15,16 +15,16 @@ export default async function Home() {
         <img src={CITY_PHOTOS.hero} alt="Bicycles and canal in central Groningen" />
         <div className="veil" />
         <div className="inner">
-          <span className="label" style={{ color: "rgba(255,255,255,0.8)" }}>Student housing · Groningen</span>
-          <h1 className="title-xl" style={{ maxWidth: 780, marginTop: 12 }}>A room is only listed once we can prove someone <em style={{ fontStyle: "italic" }}>owns it</em>.</h1>
-          <p style={{ maxWidth: 640, marginTop: 14, color: "rgba(255,255,255,0.88)", fontSize: 17 }}>Verified checks the owner, the address, the photographs and the rent before a room goes live — then orders applicants by a rule we publish in advance. Built for RUG and Hanze students, and for the 30% who arrive from abroad.</p>
+          <span className="hero-pill">REAL ROOMS. REAL PEOPLE. · GRONINGEN</span>
+          <h1 className="title-xl" style={{ maxWidth: 800, marginTop: 14 }}>Student housing in Groningen, <span style={{ color: "var(--lime)" }}>made safe, simple and social.</span></h1>
+          <p style={{ maxWidth: 650, marginTop: 14, color: "rgba(246,243,235,0.92)", fontSize: 17 }}>safe-house checks the owner, the address, the photographs and the rent before a room goes live — then orders applicants by a rule we publish in advance. Built for RUG and Hanze students, and for the 30% who arrive from abroad.</p>
           <form action="/discover" className="searchbar" role="search">
             <label className="field"><span className="label">Where</span><input name="q" placeholder="Binnenstad, Helpman, Zernike…" aria-label="Search area or street" /></label>
             <label className="field"><span className="label">Max rent</span>
               <select name="max" defaultValue="" aria-label="Maximum rent"><option value="">Any</option><option value="550">€550</option><option value="650">€650</option><option value="750">€750</option></select></label>
             <label className="field"><span className="label">Near</span>
               <select name="near" defaultValue="" aria-label="Campus"><option value="">Anywhere</option><option value="rug">RUG centre</option><option value="zernike">Zernike</option><option value="hanze">Hanze</option></select></label>
-            <button className="btn primary" style={{ minHeight: 48 }}><Icon name="search" size={16} />Search {published.length} rooms</button>
+            <button className="btn lime" style={{ minHeight: 48 }}><Icon name="search" size={16} />Search {published.length} rooms</button>
           </form>
         </div>
       </section>
@@ -73,9 +73,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section card" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) auto", gap: 24, alignItems: "center", background: "#0d1117", borderColor: "#1f2733" }}>
-        <div><span className="label" style={{ color: "#9aa4b0" }}>Swarm Lab · MiroFish-style</span><h2 className="title-lg" style={{ color: "#eef1f4", marginTop: 8 }}>Watch 262 simulated Groningen students react to the launch</h2><p style={{ color: "#9aa4b0", marginTop: 8, maxWidth: "62ch" }}>Personas fill out the survey, argue in two simulated communities, change their minds under pressure — and after 1,000 runs you get scenario frequencies, not a prophecy.</p></div>
-        <Link href="/swarm" className="btn primary">Open the swarm</Link>
+      <section className="section card" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) auto", gap: 24, alignItems: "center", background: "#113d30", borderColor: "#1d5745" }}>
+        <div><span className="label" style={{ color: "#cefa00" }}>Swarm Lab · MiroFish-style</span><h2 className="title-lg" style={{ color: "#f6f3eb", marginTop: 8 }}>Watch 262 simulated Groningen students react to the safe-house launch</h2><p style={{ color: "rgba(246,243,235,0.82)", marginTop: 8, maxWidth: "62ch" }}>Personas fill out the survey, argue in two simulated communities, change their minds under pressure — and after 1,000 runs you get scenario frequencies, not a prophecy.</p></div>
+        <Link href="/swarm" className="btn lime">Open the swarm</Link>
       </section>
     </div>
   );
