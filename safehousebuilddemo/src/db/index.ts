@@ -6,6 +6,15 @@ const globalForDb = globalThis as typeof globalThis & {
   __arenaNextJsPostgresqlDb?: NodePgDatabase;
 };
 
+export function getDbSchema(): string | undefined {
+  const raw = process.env.DB_SCHEMA?.trim();
+  if (!raw) return undefined;
+  if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(raw)) {
+    throw new Error(`Invalid DB_SCHEMA: ${raw}`);
+  }
+  return raw;
+}
+
 function needsSsl(url: string): boolean {
   if (url.includes("sslmode=disable")) return false;
   return url.includes("sslmode=require") || url.includes("render.com");
@@ -19,8 +28,10 @@ function initPool(): Pool {
   if (!databaseUrl) {
     throw new Error("DATABASE_URL is required");
   }
+  const schema = getDbSchema();
   const created = new Pool({
     connectionString: databaseUrl,
+    ...(schema ? { options: `-c search_path=${schema}` } : {}),
     ...(needsSsl(databaseUrl) ? { ssl: { rejectUnauthorized: false } } : {}),
   });
   globalForDb.__arenaNextJsPostgresqlPool = created;

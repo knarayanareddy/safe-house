@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { db } from "@/db";
+import { db, getDbSchema } from "@/db";
 import { auditLog, personas as personasTable, surveyResponses } from "@/db/schema";
 import { mulberry32, pick, weighted } from "@/lib/rng";
 import { generatePersonas } from "@/lib/personas";
@@ -90,6 +90,8 @@ export function generateAuditEvents(seed = 20261113): AuditInput[] {
 declare global { var __seedPromise: Promise<void> | undefined }
 
 async function seed() {
+  const schema = getDbSchema();
+  if (schema) await db.execute(sql.raw(`create schema if not exists "${schema}"`));
   for (const d of DDL) await db.execute(d);
   await db.transaction(async (tx) => {
     await tx.execute(sql`select pg_advisory_xact_lock(8675309)`);
