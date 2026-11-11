@@ -10,7 +10,13 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22"
-      - key: DB_SCHEMA
-        value: safehouse
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: safe-house-db
+          property: connectionString
+
+databases:
+  - name: safe-house-db
+    databaseName: safehouse_db
+    user: safehouse
+    plan: free
